@@ -1,29 +1,19 @@
 library IEEE;
-use IEEE.STD_LOGIC_1164.all;
- 
-entity encoder1 is
- port(
- a : in STD_LOGIC_VECTOR(3 downto 0);
- b : out STD_LOGIC_VECTOR(1 downto 0)
- );
-end encoder1;
- 
-architecture bhv of encoder1 is
-begin
- 
-process(a)
-begin
- if (a="1000") then
- b <= "00";
- elsif (a="0100") then
- b <= "01";
- elsif (a="0010") then
- b <= "10";
- elsif (a="0001") then
- b <= "11";
- else
- b <= "ZZ";
- end if;
-end process;
- 
-end bhv;
+use IEEE.std_logic_1164.all;
+
+
+entity encoder is
+    port(a: in std_logic_vector(3 downto 0);
+         y: out std_logic_vector(1 downto 0));
+         
+end encoder;
+architecture res of encoder is
+    begin process(a)
+       begin case a is
+        when "0001" => y <= "00";
+        when "0010" => y <= "01";
+        when "0100" => y <= "10";
+        when others => y <= "11";
+       end case;
+   end process;
+end res;
